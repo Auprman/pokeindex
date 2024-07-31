@@ -62,6 +62,9 @@ function closeModal(event) {
 
 
 // Hiermit den LoadScreeb basteln
-// document.addEventListener('DOMContentLoaded' ,() =>{
-//     console.log("Fertig geladen!!!")
-// })
+document.addEventListener('DOMContentLoaded' ,() =>{
+    let modal = document.getElementById('modal');
+    modal.addEventListener('click',(e) => {
+        e.stopPropagation();
+    })
+})
