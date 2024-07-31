@@ -50,6 +50,17 @@ function htmlContent(element, index) {
 addPokemon()
 
 
+function closeModal(event) {
+    let modal = document.getElementById('modal');
+    modal.classList.remove('visible');
+    modal.classList.add('hidden');
+}
+
+
+
+
+
+
 // Hiermit den LoadScreeb basteln
 // document.addEventListener('DOMContentLoaded' ,() =>{
 //     console.log("Fertig geladen!!!")
