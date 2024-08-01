@@ -1,5 +1,9 @@
-const URL_POKEMON = "https://pokeapi.co/api/v2/pokemon/"
-const URL_PICTURE = "https://img.pokemondb.net/artwork/vector/large/"
+
+let displayAmount = 20;
+const URL_POKEMON = "https://pokeapi.co/api/v2/pokemon?limit="+ displayAmount +"&offset=0";
+const URL_START = "https://pokeapi.co/api/v2/";
+const URL_COLOR = "https://pokeapi.co/api/v2/pokemon-color/"
+const URL_PICTURE = "https://img.pokemondb.net/artwork/vector/large/";
 
 let modal = document.getElementById('modal');
 
@@ -11,15 +15,10 @@ function rotatePokeball() {
 }
 
 
-async function getData(path="") {
-    let response = await fetch(URL_POKEMON)
-    return await response.json();
-}
-
-
-async function displayData() {
-    data = await getData();
-    return data
+async function getData(path) {
+    let response = await fetch(path)
+    let data = await response.json();
+    return data;
 }
 
 
@@ -36,10 +35,10 @@ function addDataToContainer(data) {
 
 async function addPokemon() {
     try {
-        pokemon = await getData();
+        pokemon = await getData(URL_POKEMON);
         addDataToContainer(pokemon)
     } catch (error) {
-        console.log(error)
+        console.error(error)
     }
 }
 
@@ -53,20 +52,7 @@ function htmlContent(element, index) {
             </div>
          </div>
          `
-}
-
-function modalContent() {
-    return `
-    <div id="modal-content">
-        <h2>Pikatchu</h2>
-        <img src="https://img.pokemondb.net/artwork/vector/large/pikachu.png" alt="Pokemon Picture" >
-        <div id="attributes-pokemon">
-
-        </div>
-    </div>
-    `
-}
-
+        }
 
 function showModal(name) {
    modal.classList.remove('hidden')
@@ -81,10 +67,16 @@ function hideModal() {
 }
 
 
-function updateContent(name) {
+async function updateContent(name) {
+    
+    let color = await getData(URL_COLOR)
+    
     document.getElementById('modalPokemonName').innerText = name;
     document.getElementById('modalPokemonImg').src = URL_PICTURE + name + ".png";
+    document.getElementById('type').innerText = color
+
 }
+
 
 // Hiermit den LoadScreeb basteln
 document.addEventListener('DOMContentLoaded' ,() =>{
@@ -92,3 +84,12 @@ document.addEventListener('DOMContentLoaded' ,() =>{
         e.stopPropagation();
     })
 })
+
+
+async function logoutPokemon(link) {
+    let response = await fetch(link)
+    let data = await response.json();
+
+    console.log(data['types'][0]['type']['name'])
+}
+logoutPokemon("https://pokeapi.co/api/v2/pokemon/pikachu/");
