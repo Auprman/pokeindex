@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <title>Pokemon Index</title>
 </head>
-<body onload="rotatePokeball()">
+<body onload="init(),rotatePokeball()">
     <header>
         <div  class="logo">
             <a href="index.html"><img id="logoPic" src="/img/pokeball.png" alt="Pokeball"></a>
@@ -21,8 +21,12 @@
     </div>
     <div class="hidden" id="modal" onclick="hideModal()">
         <div id="modal-content">
-            <h2 id="modalPokemonName">Pikatchu</h2>
-            <img id="modalPokemonImg" src="https://img.pokemondb.net/artwork/vector/large/pikachu.png" alt="Pokemon Picture" >
+            <h2 id="modalPokemonName">Pikachu</h2>
+            <div>
+                <img id="previouse" src="" alt="">
+                <img id="modalPokemonImg" src="https://img.pokemondb.net/artwork/vector/large/pikachu.png" alt="Pokemon Picture" >
+                <img id="next" src="" alt="">
+            </div>
             <div id="attributes-pokemon">
                 <h3 id="type"></h3>
             </div>
