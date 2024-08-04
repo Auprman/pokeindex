@@ -2,23 +2,31 @@
     margin: 0;
     padding: 0;
 }
-html, body {
-    height: 100%;
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Chakra Petch", sans-serif;
   }
 
 header{
     display: flex;
+    width: 100%;
     align-items: center;
     height: 85px;
     background-color: rgb(145, 255, 246);
     box-shadow: 0px 9px 9px rgba(0, 0, 0, 0.301);
 }
-
+h1{
+    text-align: center;
+    margin: 32px;
+}
 .logo img{
     height: 75px;
     margin-left: 16px;
     opacity: 0.9;
-    transition: rotate 2s;
+    transition:  rotate 60s;
 }
 
 .pokemon-card{
@@ -27,11 +35,7 @@ header{
    display: flex;
    align-items: center;
    justify-content: center;
-   flex-direction: column;
-   border: 1px solid rgba(0, 0, 0, 0.178);
-   box-shadow: 0px 4px 4px  rgba(0, 0, 0, 0.11);
-   border-radius: 8px;
-   
+   flex-direction: column; 
 }
 
 .pokemon-container{
@@ -40,19 +44,25 @@ header{
     align-items: center;
     cursor: pointer;
     margin: 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.178);
+    box-shadow: 0px 4px 4px  rgba(0, 0, 0, 0.11);
 }
 
 .pokemon-card img{
     height: 150px;
     width: 200px;
     object-fit: contain;
+    filter: drop-shadow(-11px 0px 3px rgba(0, 0, 0, 0.253));
 }
 
 #content{
     display: flex;
+    max-width: 1440px;
+    align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    z-index: 20;
+    z-index: 10;
 }
 
 #modal{
@@ -62,11 +72,11 @@ header{
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.466);
+    background-color: rgba(0, 0, 0, 0.788);
     width: 100%;
     height: 100%;
     cursor: pointer;
-    z-index: 10;
+    z-index: 20;
 }
 
 #modal-content{
@@ -84,6 +94,7 @@ header{
 
 #modal-content img{
     height: 30%;
+    filter: drop-shadow(-11px 0px 3px rgba(0, 0, 0, 0.353));
 }
 
 .hidden{
@@ -91,28 +102,29 @@ header{
 }
 
 .grass,.bug{
-    background-color: rgb(99, 247, 148) !important;
+    background: linear-gradient(#63f794, #ffffff) !important;
 }
 .electric{
-    background-color: rgb(253, 253, 122) !important;
+    background: linear-gradient(#d3d34f, #ffffff) !important;
 }
 .water{
-    background-color: rgb(96, 96, 247) !important;
+    background: linear-gradient(#4d4dee, #ffffff) !important;
 }
 .fire{
-    background-color: rgb(255, 77, 77) !important;
+    background: linear-gradient(#ff3939, #ffffff)  !important;
 }
 .poison{
-    background-color: rgb(129, 52, 129) !important;
+    background: linear-gradient(#813481, #ffffff)  !important;
+    
 }
 .fairy{
-    background-color: rgb(214, 141, 214) !important;
+    background: linear-gradient(#d68dd6, #ffffff) !important;
 }
 .normal{
-    background-color: rgb(238, 238, 238) !important;
+    background: linear-gradient(#d3d3d3, #ffffff) !important;
 }
 .ground{
-    background-color: rgb(141, 71, 71) !important;
+    background: linear-gradient(#8d4747, #ffffff) !important;
 }
 
 #modalPokemonImg{

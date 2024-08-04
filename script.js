@@ -9,11 +9,8 @@ const URL_PICTURE = "https://img.pokemondb.net/artwork/vector/large/";
 let modal = document.getElementById('modal');
 
 
-
-
-
 function rotatePokeball() {
-    document.querySelector("#logoPic").style.rotate = "360deg"
+    document.querySelector("#logoPic").style.rotate = "36000deg"
 }
 
 
@@ -37,7 +34,6 @@ async function addDataToContainer(name,path) {
         card.classList.add(pokemonData['types'][0]['type']['name'])
 
     });
-   
 }
 
 
@@ -58,7 +54,7 @@ function htmlContent(element, index) {
     return `
          <div onclick="showModal('${name}')" id="${name}" class = "pokemon-container">
                  <div class="pokemon-card">
-                <h2>${name}</h2>
+                <h2>${name.charAt(0).toUpperCase() + name.slice(1)}</h2>
                 <img src="${URL_PICTURE + name + ".png"}">
             </div>
          </div>
@@ -70,11 +66,10 @@ function showModal(name) {
     const typeName = document.getElementById(name).classList[1]
     const modalContent = document.getElementById('modal-content') 
     document.getElementById('modal-content').addEventListener("click",(e) => {e.stopPropagation() })
-   modal.classList.remove('hidden')
-   modal.classList.add('visible')
-   modalContent.classList.add(typeName)
-   
-   updateContent(name);
+    modal.classList.remove('hidden')
+    modal.classList.add('visible')
+    modalContent.classList.add(typeName)
+    updateContent(name);
 }
 
 
@@ -86,19 +81,25 @@ function hideModal(event) {
 
 
 async function updateContent(name) {
-    
-    let color = await getData(URL_COLOR + name)
-    document.getElementById(name).classList.add(color['types'][0]['type']['name'])
-    document.getElementById('modalPokemonName').innerText = name;
+    let color = await getData(URL_COLOR + name);
+    let type = color['types'][0]['type']['name'];
+    document.getElementById(name).classList.add(type);
+    document.getElementById('modalPokemonName').innerText = name.charAt(0).toUpperCase() + name.slice(1);
     document.getElementById('modalPokemonImg').src = URL_PICTURE + name + ".png";
-    document.getElementById('type').innerText = "Type: " + color['types'][0]['type']['name']
-
+    document.getElementById('type').innerText = "Type: " + type.charAt(0).toUpperCase() + type.slice(1);
 }
 
 
-// Hiermit den LoadScreen basteln
+function stopRotation() {
+    console.log("ready");
+    document.querySelector("#logoPic").removeAttribute('rotate')
+}
+
+
+document.addEventListener('load', stopRotation())
+
 
 function init(){
     addPokemon()
-   
+    rotatePokeball();
 }
