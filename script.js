@@ -10,7 +10,7 @@ let modal = document.getElementById('modal');
 
 
 function rotatePokeball() {
-    document.querySelector("#logoPic").style.rotate = "36000deg"
+    document.querySelector("#logoPic").style.rotate = "360deg"
 }
 
 
@@ -69,6 +69,7 @@ function showModal(name) {
     modal.classList.remove('hidden')
     modal.classList.add('visible')
     modalContent.classList.add(typeName)
+    document.body.style.overflowY = "hidden"   
     updateContent(name);
 }
 
@@ -77,6 +78,7 @@ function hideModal(event) {
     document.getElementById('modal-content').className =''
     modal.classList.remove('visible');
     modal.classList.add('hidden');
+    document.body.style.overflowY = "scroll"
 }
 
 
@@ -93,6 +95,12 @@ async function updateContent(name) {
 function stopRotation() {
     console.log("ready");
     document.querySelector("#logoPic").removeAttribute('rotate')
+}
+
+
+function filterPokemon() {
+   let input = document.getElementById('search');
+    
 }
 
 

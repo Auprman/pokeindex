@@ -10,6 +10,7 @@ body {
     font-family: "Chakra Petch", sans-serif;
   }
 
+
 header{
     display: flex;
     width: 100%;
@@ -26,7 +27,7 @@ h1{
     height: 75px;
     margin-left: 16px;
     opacity: 0.9;
-    transition:  rotate 60s;
+    transition:  rotate 2s;
 }
 
 .pokemon-card{

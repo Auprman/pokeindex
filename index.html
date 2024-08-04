@@ -13,9 +13,11 @@
 <body onload="init()">
     <header>
         <div  class="logo">
-            <a href="index.html"><img id="logoPic" src="/img/pokeball.png" alt="Pokeball"></a>
-            <input type="search" id="search">
+            <a href="index.html"><img id="logoPic" src="./img/pokeball.png" alt="Pokeball"></a>
         </div>
+        <form action=""> 
+            <input oninput="filterPokemon()" type="search" id="search">
+        </form>
         <nav class="nav-top"></nav>
     </header>
     <h1>Pokemon Index</h1>
