@@ -51,6 +51,8 @@ header{
     top: 50%;
     left: -15%;
 }
+
+
 #next {
     border: 1px solid white;
     border-radius: 50%;
@@ -61,8 +63,9 @@ header{
     top: 50%;
     right: -15%;
 }
-#next,#previous:hover{
+#next:hover,#previous:hover{
     cursor: pointer;
+    filter: brightness(1.4);
 }
 
 h1{

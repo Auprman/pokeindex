@@ -7,6 +7,13 @@ const URL_COLOR = "https://pokeapi.co/api/v2/pokemon/"
 const URL_PICTURE = "https://img.pokemondb.net/artwork/vector/large/";
 
 let modal = document.getElementById('modal');
+let loadedPokemon = [""];
+
+
+function init(){
+    addPokemon()
+    rotatePokeball();
+}
 
 
 function rotatePokeball() {
@@ -29,11 +36,11 @@ async function addDataToContainer(name,path) {
         const pokemonData = await getData(URL_COLOR + pokename); 
         container.innerHTML += htmlContent(element, index);
         const card = document.getElementById(pokename);
-        
-        
         card.classList.add(pokemonData['types'][0]['type']['name'])
-
+        loadedPokemon.push(element['name']);
     });
+    console.log(loadedPokemon);
+    
 }
 
 
@@ -93,7 +100,6 @@ async function updateContent(name) {
 
 
 function stopRotation() {
-    console.log("ready");
     document.querySelector("#logoPic").removeAttribute('rotate')
 }
 
@@ -136,7 +142,4 @@ function showPreviousPokemon() {
 document.addEventListener('load', stopRotation())
 
 
-function init(){
-    addPokemon()
-    rotatePokeball();
-}
+
