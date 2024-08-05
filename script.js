@@ -100,8 +100,37 @@ function stopRotation() {
 
 function filterPokemon() {
    let input = document.getElementById('search');
+   document.querySelectorAll('.pokemon-container').forEach((element) =>{
+    if(input.value.length >= 3){
+        element.style.display ="none"
+        element.id.match(input.value.toLowerCase()) ? element.style.display ='flex' : null;
+    }
+    else{
+        element.style.display ="flex"
+    }
+   });
+
+
+//    if(input.value.length > 3 && input.value.match()){
+
+//    }
     
 }
+
+
+
+
+function showNextPokemon() {
+    let nextPokemonName = document.getElementById('modalPokemonName');
+    console.log(nextPokemonName)
+    
+}
+
+
+function showPreviousPokemon() {
+
+}
+
 
 
 document.addEventListener('load', stopRotation())
