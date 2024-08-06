@@ -52,9 +52,7 @@ async function addPokemon() {
     }
 }
 
-
-function htmlContent(element, index) {
-    let name = element['name'].toString();
+function htmlContent(element, index) {    let name = element['name'].toString();
     return `
          <div onclick="showModal('${name}')" id="${name}" class = "pokemon-container">
                  <div class="pokemon-card">
@@ -62,8 +60,7 @@ function htmlContent(element, index) {
                 <img src="${URL_PICTURE + name + ".png"}">
             </div>
          </div>
-         `
-        }
+        `        }
 
 
 function showModal(name) { 
@@ -93,7 +90,8 @@ async function updateContent(name) {
     document.getElementById('modalPokemonName').innerText = name.charAt(0).toUpperCase() + name.slice(1);
     document.getElementById('modalPokemonImg').src = URL_PICTURE + name + ".png";
     document.getElementById('type').innerText = "Type: " + type.charAt(0).toUpperCase() + type.slice(1);
-
+    document.getElementById('modal-content').classList =''
+    document.getElementById('modal-content').classList = 'modal-content ' +  type;
 }
 
 
@@ -112,23 +110,21 @@ function filterPokemon() {
     else{
         element.style.display ="flex"
     }
-   });
-
-
-//    if(input.value.length > 3 && input.value.match()){
-
-//    }
-    
+   });  
 }
 
 
 function showNextPokemon() {
     let currentPokemon = document.getElementById('modalPokemonName').innerText.toLocaleLowerCase();
+   
     loadedPokemon.forEach((parameter, index) =>{
         if(parameter == currentPokemon && index < loadedPokemon.length - 1){
+            className = document.getElementById(currentPokemon).classList[1];
             updateContent(loadedPokemon[index + 1])
         }
     }) 
+    // document .getElementById('modal-content').classList = '';
+    // document .getElementById('modal-content').classList = className;
 }
 
 
@@ -140,7 +136,6 @@ function showPreviousPokemon() {
         }
     })
 }
-
 
 
 document.addEventListener('load', stopRotation())
