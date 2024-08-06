@@ -1,5 +1,5 @@
 
-let displayAmount = 40;
+let displayAmount = 60;
 
 const URL_POKEMON = "https://pokeapi.co/api/v2/pokemon?limit="+ displayAmount +"&offset=0";
 const URL_START = "https://pokeapi.co/api/v2/";
@@ -7,8 +7,7 @@ const URL_COLOR = "https://pokeapi.co/api/v2/pokemon/"
 const URL_PICTURE = "https://img.pokemondb.net/artwork/vector/large/";
 
 let modal = document.getElementById('modal');
-let loadedPokemon = [""];
-
+let loadedPokemon = [];
 
 function init(){
     addPokemon()
@@ -39,8 +38,6 @@ async function addDataToContainer(name,path) {
         card.classList.add(pokemonData['types'][0]['type']['name'])
         loadedPokemon.push(element['name']);
     });
-    console.log(loadedPokemon);
-    
 }
 
 
@@ -96,6 +93,7 @@ async function updateContent(name) {
     document.getElementById('modalPokemonName').innerText = name.charAt(0).toUpperCase() + name.slice(1);
     document.getElementById('modalPokemonImg').src = URL_PICTURE + name + ".png";
     document.getElementById('type').innerText = "Type: " + type.charAt(0).toUpperCase() + type.slice(1);
+
 }
 
 
@@ -124,17 +122,23 @@ function filterPokemon() {
 }
 
 
-
-
 function showNextPokemon() {
-    let nextPokemonName = document.getElementById('modalPokemonName');
-    console.log(nextPokemonName)
-    
+    let currentPokemon = document.getElementById('modalPokemonName').innerText.toLocaleLowerCase();
+    loadedPokemon.forEach((parameter, index) =>{
+        if(parameter == currentPokemon && index < loadedPokemon.length - 1){
+            updateContent(loadedPokemon[index + 1])
+        }
+    }) 
 }
 
 
 function showPreviousPokemon() {
-
+    let currentPokemon = document.getElementById('modalPokemonName').innerText.toLocaleLowerCase();
+    loadedPokemon.forEach((parameter, index) =>{
+        if(parameter == currentPokemon && index > 0){
+            updateContent(loadedPokemon[index - 1])
+        }
+    })
 }
 
 
