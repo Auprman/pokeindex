@@ -1,13 +1,12 @@
-
-let displayAmount = 60;
-
-const URL_POKEMON = "https://pokeapi.co/api/v2/pokemon?limit="+ displayAmount +"&offset=0";
-const URL_START = "https://pokeapi.co/api/v2/";
-const URL_COLOR = "https://pokeapi.co/api/v2/pokemon/"
-const URL_PICTURE = "https://img.pokemondb.net/artwork/vector/large/";
-
 let modal = document.getElementById('modal');
 let loadedPokemon = [];
+let displayAmount = 20;
+
+const URL_POKEMONS = "https://pokeapi.co/api/v2/pokemon?limit="+ displayAmount +"&offset=0";
+const URL_SINGLE = "https://pokeapi.co/api/v2/pokemon/";
+const URL_PICTURE = "https://img.pokemondb.net/artwork/vector/large/";
+
+
 
 function init(){
     addPokemon()
@@ -21,7 +20,7 @@ function rotatePokeball() {
 
 
 async function getData(path) {
-    let response = await fetch(path)
+    let response = await fetch(path);
     let data = await response.json();
     return data;
 }
@@ -29,30 +28,30 @@ async function getData(path) {
 
 async function addDataToContainer(name,path) {
     let container = document.getElementById('content');
-    
+    loadedPokemon = [];
     name.results.forEach(async (element, index) => {
+        loadedPokemon.push(element['name']);    
         const pokename = element['name']
-        const pokemonData = await getData(URL_COLOR + pokename); 
+        const pokemonData = await getData(URL_SINGLE + pokename); 
         container.innerHTML += htmlContent(element, index);
         const card = document.getElementById(pokename);
         card.classList.add(pokemonData['types'][0]['type']['name'])
-        loadedPokemon.push(element['name']);
     });
 }
 
 
 async function addPokemon() {
     try {
-        pokemon = await getData(URL_POKEMON);
-        path = await getData(URL_COLOR);
-        
-        addDataToContainer(pokemon,path )
+        pokemons = await getData(URL_POKEMONS);
+        console.log(pokemons);
+        addDataToContainer(pokemons)
     } catch (error) {
         console.error(error)
     }
 }
 
-function htmlContent(element, index) {    let name = element['name'].toString();
+function htmlContent(element, index) {    
+    let name = element['name'].toString();
     return `
          <div onclick="showModal('${name}')" id="${name}" class = "pokemon-container">
                  <div class="pokemon-card">
@@ -84,14 +83,13 @@ function hideModal(event) {
 
 
 async function updateContent(name) {
-    let color = await getData(URL_COLOR + name);
+    let color = await getData(URL_SINGLE + name);
     let type = color['types'][0]['type']['name'];
     document.getElementById(name).classList.add(type);
     document.getElementById('modalPokemonName').innerText = name.charAt(0).toUpperCase() + name.slice(1);
     document.getElementById('modalPokemonImg').src = URL_PICTURE + name + ".png";
     document.getElementById('type').innerText = "Type: " + type.charAt(0).toUpperCase() + type.slice(1);
-    document.getElementById('modal-content').classList =''
-    document.getElementById('modal-content').classList = 'modal-content ' +  type;
+    setBackgroundColor(type);
 }
 
 
@@ -123,8 +121,6 @@ function showNextPokemon() {
             updateContent(loadedPokemon[index + 1])
         }
     }) 
-    // document .getElementById('modal-content').classList = '';
-    // document .getElementById('modal-content').classList = className;
 }
 
 
@@ -138,7 +134,35 @@ function showPreviousPokemon() {
 }
 
 
-document.addEventListener('load', stopRotation())
+async function loadMorePokemon() {
+    console.log(document.body.scrollHeight);
+    
+    displayAmount += 10 ;
+    const URL_POKEMONS = "https://pokeapi.co/api/v2/pokemon?limit=" + displayAmount + "&offset=0";
+    document.getElementById('content').innerHTML = '';
+    pokemons = await getData(URL_POKEMONS);
+    addDataToContainer(pokemons);
+    
+    document.addEventListener('loadeddata')
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth'
+        });
+     
+
+}
+
+
+
+function setBackgroundColor(type) {
+    document.getElementById('modal-content').classList =''
+    document.getElementById('modal-content').classList = 'modal-content ' +  type;
+}
+
+document.addEventListener('DOMContentLoaded', () =>{
+    stopRotation()
+    console.log('geladen!!');
+})
 
 
 
