@@ -82,10 +82,18 @@ h1{
 .pokemon-card{
     height: 250px;
     width: 250px;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   flex-direction: column; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; 
+}
+
+.pokemon-card:hover{
+    filter: brightness(1.2);
+}
+.pokemon-card:hover img{
+    transition: 250ms;
+    scale: 1.07;
 }
 
 .pokemon-container{
@@ -104,6 +112,7 @@ h1{
     width: 200px;
     object-fit: contain;
     filter: drop-shadow(-11px 0px 3px rgba(0, 0, 0, 0.253));
+    transition: scale 250ms ease-in-out;
 }
 
 #content{

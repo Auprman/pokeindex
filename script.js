@@ -65,12 +65,19 @@ function htmlContent(element, index) {
 
 
 async function updateContent(name) {
-    let color = await getData(URL_SINGLE + name);
-    let type = color['types'][0]['type']['name'];
+    const pokemon = await getData(URL_SINGLE + name);
+    const type = pokemon['types'][0]['type']['name'];
+    const weight  = pokemon['weight'] * 0.453592
+    const hp = pokemon['stats'][0]['base_stat']
+
+    
+    
     document.getElementById(name).classList.add(type);
     document.getElementById('modalPokemonName').innerText = name.charAt(0).toUpperCase() + name.slice(1);
     document.getElementById('modalPokemonImg').src = URL_PICTURE + name + ".png";
     document.getElementById('type').innerText = "Type: " + type.charAt(0).toUpperCase() + type.slice(1);
+    document.getElementById('weight').innerText ="Weight: " + weight.toFixed(0) + " kg" 
+    document.getElementById('hp').innerText = "HP: " + hp;
     setBackgroundColor(type);
 }
 
