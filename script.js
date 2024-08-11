@@ -50,6 +50,7 @@ async function addPokemon() {
     }
 }
 
+
 function htmlContent(element, index) {    
     let name = element['name'].toString();
     return `
@@ -59,26 +60,7 @@ function htmlContent(element, index) {
                 <img src="${URL_PICTURE + name + ".png"}">
             </div>
          </div>
-        `        }
-
-
-function showModal(name) { 
-    const typeName = document.getElementById(name).classList[1]
-    const modalContent = document.getElementById('modal-content') 
-    document.getElementById('modal-content').addEventListener("click",(e) => {e.stopPropagation() })
-    modal.classList.remove('hidden')
-    modal.classList.add('visible')
-    modalContent.classList.add(typeName)
-    document.body.style.overflowY = "hidden"   
-    updateContent(name);
-}
-
-
-function hideModal(event) {
-    document.getElementById('modal-content').className =''
-    modal.classList.remove('visible');
-    modal.classList.add('hidden');
-    document.body.style.overflowY = "scroll"
+        `  
 }
 
 
@@ -112,57 +94,16 @@ function filterPokemon() {
 }
 
 
-function showNextPokemon() {
-    let currentPokemon = document.getElementById('modalPokemonName').innerText.toLocaleLowerCase();
-   
-    loadedPokemon.forEach((parameter, index) =>{
-        if(parameter == currentPokemon && index < loadedPokemon.length - 1){
-            className = document.getElementById(currentPokemon).classList[1];
-            updateContent(loadedPokemon[index + 1])
-        }
-    }) 
-}
-
-
-function showPreviousPokemon() {
-    let currentPokemon = document.getElementById('modalPokemonName').innerText.toLocaleLowerCase();
-    loadedPokemon.forEach((parameter, index) =>{
-        if(parameter == currentPokemon && index > 0){
-            updateContent(loadedPokemon[index - 1])
-        }
-    })
-}
-
-
 async function loadMorePokemon() {
-    console.log(document.body.scrollHeight);
-    
     displayAmount += 10 ;
     const URL_POKEMONS = "https://pokeapi.co/api/v2/pokemon?limit=" + displayAmount + "&offset=0";
     document.getElementById('content').innerHTML = '';
     pokemons = await getData(URL_POKEMONS);
     addDataToContainer(pokemons);
-    
-    document.addEventListener('loadeddata')
-        window.scrollTo({
-            top: document.body.scrollHeight,
-            behavior: 'smooth'
-        });
-     
-
+    document.addEventListener('DOMContentLoaded', () =>{
+    window.scrollTo(0,0);
+    })
 }
-
-
-
-function setBackgroundColor(type) {
-    document.getElementById('modal-content').classList =''
-    document.getElementById('modal-content').classList = 'modal-content ' +  type;
-}
-
-document.addEventListener('DOMContentLoaded', () =>{
-    stopRotation()
-    console.log('geladen!!');
-})
 
 
 
