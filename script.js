@@ -73,8 +73,7 @@ async function updateContent(name) {
     document.getElementById(name).classList.add(type);
     document.getElementById('modalPokemonName').innerText = name.charAt(0).toUpperCase() + name.slice(1);
     document.getElementById('modalPokemonImg').src = URL_PICTURE + name + ".png";
-    setType(pokemon)
-    
+    setType(pokemon);
     document.getElementById('weight').innerText ="Weight: " + weight.toFixed(0) + " kg" 
     document.getElementById('hp').innerText = "HP: " + hp;
     setBackgroundColor(type);

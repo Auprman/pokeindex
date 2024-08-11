@@ -53,10 +53,9 @@ function setType(pokemon) {
     if(pokemon.types.length > 1){
         pokemon.types.forEach((key) =>{
             let types = key.type.name;
-            types.charAt(0).toUpperCase() + types.slice(1);
-            moreThanOneType.push(" " + types)
+            moreThanOneType.push(" " + types.charAt(0).toUpperCase() + types.slice(1));
         })
-        document.getElementById('type').innerText = 'Type: ' + moreThanOneType;
+        document.getElementById('type').innerText = 'Types: ' + moreThanOneType;
     }
     else{
         document.getElementById('type').innerText = "Type: " + type.charAt(0).toUpperCase() + type.slice(1);

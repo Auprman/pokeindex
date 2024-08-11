@@ -17,7 +17,7 @@ header{
     justify-content: center;
     align-items: center;
     height: 85px;
-    background-color: rgb(145, 255, 246);
+    background-color: rgb(80, 138, 224);
     box-shadow: 0px 9px 9px rgba(0, 0, 0, 0.301);
 }
 .header-content{
@@ -71,11 +71,21 @@ header{
 h1{
     text-align: center;
     margin: 32px;
+    font-weight: 900;
+    font-size: 40px;
+}
+h2{
+    font-size: 30px;
+    letter-spacing: 2px;
+    font-variant: small-caps;
 }
 .logo img{
+    background: rgba(255, 255, 255, 0);
     height: 75px;
+    border-radius: 50%;
     margin-left: 16px;
     opacity: 0.9;
+    box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.274);
     transition:  rotate 2s;
 }
 
