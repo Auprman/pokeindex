@@ -45,3 +45,20 @@ function setBackgroundColor(type) {
     document.getElementById('modal-content').classList =''
     document.getElementById('modal-content').classList = 'modal-content ' +  type;
 }
+
+
+function setType(pokemon) {
+    const type = pokemon['types'][0]['type']['name'];
+    let moreThanOneType = [];
+    if(pokemon.types.length > 1){
+        pokemon.types.forEach((key) =>{
+            let types = key.type.name;
+            types.charAt(0).toUpperCase() + types.slice(1);
+            moreThanOneType.push(" " + types)
+        })
+        document.getElementById('type').innerText = 'Type: ' + moreThanOneType;
+    }
+    else{
+        document.getElementById('type').innerText = "Type: " + type.charAt(0).toUpperCase() + type.slice(1);
+    }
+}
