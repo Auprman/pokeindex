@@ -29,20 +29,38 @@ async function getData(path) {
 async function addDataToContainer(name,path) {
     let container = document.getElementById('content');
     loadedPokemon = [];
-    name.results.forEach(async (element, index) => {
-        loadedPokemon.push(element['name']);    
-        const pokename = element['name']
-        const pokemonData = await getData(URL_SINGLE + pokename); 
-        container.innerHTML += htmlContent(element, pokemonData.id);
-        const card = document.getElementById(pokename);
-        card.classList.add(pokemonData['types'][0]['type']['name'])
-    });
+    
+    for (let i= 0 ; i < name.results.length ; i ++){
+            loadedPokemon.push(name.results[i]['name']);
+            const pokename = name.results[i]['name']
+            const pokemonData = await getData(URL_SINGLE + pokename);
+            const typeName = pokemonData['types'][0]['type']['name'];      
+            container.innerHTML += htmlContent(name.results[i], pokemonData.id);
+            const card = document.getElementById(pokename);
+            card.classList.add(typeName)
+            addTypesToCard(pokemonData)
+    }
+}
+
+function addTypesToCard(pokemon) {
+    let pictureContainer = document.getElementById('type-pictures-' + pokemon['name']);
+    if(pokemon.types.length > 1){
+        pokemon.types.forEach((type, index) =>{
+            console.log(type);
+            
+            pictureContainer.innerHTML += `<img src = "img/types/${type['type']['name']}.png">`;            
+        })
+    }
+    else{
+        pictureContainer.innerHTML = `<img src = "img/types/${pokemon['types'][0]['type']['name']}.png">`;
+    }
+
 }
 
 
 async function addPokemon() {
     try {
-        pokemons = await getData(URL_POKEMONS);
+        pokemons = await getData(URL_SINGLE);
         addDataToContainer(pokemons)
     } catch (error) {
         console.error(error)
@@ -55,7 +73,10 @@ function htmlContent(element, id) {
     return `
          <div onclick="showModal('${name}')" id="${name}" class = "pokemon-container">
                  <div class="pokemon-card">
-                 <h4>${'# ' + id}</h4>
+                 <div class ="card-header">
+                 <div id = "type-pictures-${name}"></div>
+                 <h4>${'# ' + id}</h4> 
+                 </div>
                 <h2>${name.charAt(0).toUpperCase() + name.slice(1)}</h2>
                 <img src="${URL_PICTURE + name + ".png"}">
             </div>

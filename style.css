@@ -196,6 +196,27 @@ h2{
     background: linear-gradient(#8d4747, #ffffff) !important;
 }
 
+h4{
+    text-align: center;
+}
+
+.card-header{
+    display: flex;
+    flex-direction: column;
+}
+
+.card-header > div{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    flex-direction: row;
+}
+
+.card-header img{
+    height: 32px;
+    width: 32px;
+}
+
 #modalPokemonImg{
     height: 50%;
     width: 100%;

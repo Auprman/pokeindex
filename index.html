@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="modal.js"defer></script>
     <script src="script.js" defer></script>
+    <script src="filter.js" defer></script>
     
     <link rel="stylesheet" href="style.css">
     <title>Pokemon Index</title>
@@ -21,7 +22,10 @@
             <form action=""> 
                 <input oninput="filterPokemon()" type="search" id="search" placeholder="Search Pokemon">
             </form>
-            <nav class="nav-top"></nav>
+            <nav class="nav-top">
+                <a href="#" onclick="filterByType()">Filter by Type</a>
+                <a href="#" onclick="filterById()">Filter by ID</a>
+            </nav>
         </div>
     </header>
     <h1>Pokemon Index</h1>
