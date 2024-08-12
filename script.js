@@ -33,7 +33,7 @@ async function addDataToContainer(name,path) {
         loadedPokemon.push(element['name']);    
         const pokename = element['name']
         const pokemonData = await getData(URL_SINGLE + pokename); 
-        container.innerHTML += htmlContent(element, index);
+        container.innerHTML += htmlContent(element, pokemonData.id);
         const card = document.getElementById(pokename);
         card.classList.add(pokemonData['types'][0]['type']['name'])
     });
@@ -43,7 +43,6 @@ async function addDataToContainer(name,path) {
 async function addPokemon() {
     try {
         pokemons = await getData(URL_POKEMONS);
-        console.log(pokemons);
         addDataToContainer(pokemons)
     } catch (error) {
         console.error(error)
@@ -51,11 +50,12 @@ async function addPokemon() {
 }
 
 
-function htmlContent(element, index) {    
+function htmlContent(element, id) {    
     let name = element['name'].toString();
     return `
          <div onclick="showModal('${name}')" id="${name}" class = "pokemon-container">
                  <div class="pokemon-card">
+                 <h4>${'# ' + id}</h4>
                 <h2>${name.charAt(0).toUpperCase() + name.slice(1)}</h2>
                 <img src="${URL_PICTURE + name + ".png"}">
             </div>
