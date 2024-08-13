@@ -46,8 +46,6 @@ function addTypesToCard(pokemon) {
     let pictureContainer = document.getElementById('type-pictures-' + pokemon['name']);
     if(pokemon.types.length > 1){
         pokemon.types.forEach((type, index) =>{
-            console.log(type);
-            
             pictureContainer.innerHTML += `<img src = "img/types/${type['type']['name']}.png">`;            
         })
     }
@@ -98,6 +96,7 @@ async function updateContent(name) {
     document.getElementById('weight').innerText ="Weight: " + weight.toFixed(0) + " kg" 
     document.getElementById('hp').innerText = "HP: " + hp;
     setBackgroundColor(type);
+    setPokemonStats(hp)
 }
 
 

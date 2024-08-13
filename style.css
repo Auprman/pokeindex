@@ -10,7 +10,9 @@ body {
     font-family: "Chakra Petch", sans-serif;
   }
 
-
+h3{
+    text-align: center;
+}
 header{
     display: flex;
     width: 100%;
@@ -90,18 +92,18 @@ h2{
 }
 
 .pokemon-card{
-    height: 250px;
+    height: 320px;
     width: 250px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     flex-direction: column; 
 }
 
-.pokemon-card:hover{
-    filter: brightness(1.2);
+.pokemon-card:hover > img{
+    filter: brightness(1.1);
 }
-.pokemon-card:hover img{
+.pokemon-card:hover > img{
     transition: 250ms;
     scale: 1.07;
 }
@@ -117,7 +119,7 @@ h2{
     box-shadow: 0px 4px 4px  rgba(0, 0, 0, 0.11);
 }
 
-.pokemon-card img{
+.pokemon-card > img{
     height: 150px;
     width: 200px;
     object-fit: contain;
@@ -202,8 +204,9 @@ h4{
 
 .card-header{
     display: flex;
+    width: 92%;
     flex-direction: column;
-}
+   }
 
 .card-header > div{
     display: flex;
@@ -225,6 +228,32 @@ h4{
     top: -40%;
     left: 0%;
 }
+
+.progress-bar-hp{
+    z-index: 20;
+    position: relative;
+    width: 150px;
+    height: 15px;
+    background-color: rgb(56, 56, 56);
+    border-radius: 50px;
+    color: white;
+   
+}
+.progress-bar-inner-hp{
+    z-index: 30;
+    position: absolute;
+    height: 5px;
+    width: 0px;
+    background-color: rgb(248, 33, 33);
+    top: 5px;
+    left: 5px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: width 250ms ease;
+}
+
 @media (max-width: 450px) {
     #next,#previous{
         top: 110%;

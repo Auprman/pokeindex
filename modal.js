@@ -61,3 +61,15 @@ function setType(pokemon) {
         document.getElementById('type').innerText = "Type: " + type.charAt(0).toUpperCase() + type.slice(1);
     }
 }
+
+function setPokemonStats(hp) {
+    setHp(hp)
+    
+    
+}
+
+function setHp(hp) {
+    const hpBar = document.querySelector('.progress-bar-inner-hp');
+    const hpInPercent = hp / 340 * 140;
+    hpBar.style.width = hpInPercent +"px";
+}
