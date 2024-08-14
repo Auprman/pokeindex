@@ -254,6 +254,57 @@ h4{
     transition: width 250ms ease;
 }
 
+.progress-bar-atk{
+    z-index: 20;
+    position: relative;
+    width: 150px;
+    height: 15px;
+    background-color: rgb(56, 56, 56);
+    border-radius: 50px;
+    color: white;
+   
+}
+.progress-bar-inner-atk{
+    z-index: 30;
+    position: absolute;
+    height: 5px;
+    width: 0px;
+    background-color: rgb(248, 33, 33);
+    top: 5px;
+    left: 5px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: width 250ms ease;
+}
+
+.progress-bar-def{
+    z-index: 20;
+    position: relative;
+    width: 150px;
+    height: 15px;
+    background-color: rgb(56, 56, 56);
+    border-radius: 50px;
+    color: white;
+   
+}
+.progress-bar-inner-def{
+    z-index: 30;
+    position: absolute;
+    height: 5px;
+    width: 0px;
+    background-color: rgb(19, 208, 241);
+    top: 5px;
+    left: 5px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: width 250ms ease;
+}
+
+
 @media (max-width: 450px) {
     #next,#previous{
         top: 110%;

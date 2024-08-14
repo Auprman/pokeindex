@@ -62,14 +62,50 @@ function setType(pokemon) {
     }
 }
 
-function setPokemonStats(hp) {
-    setHp(hp)
-    
-    
+async function setPokemonStats(name) {
+    const pokemon = await getData(URL_SINGLE + name);
+    const hp = pokemon['stats'][0]['base_stat'];
+    const atk = pokemon['stats'][1]['base_stat'];
+    const def = pokemon['stats'][2]['base_stat']
+    setHp(hp);
+    setAtk(atk);
+    setDef(def);
+     
 }
 
 function setHp(hp) {
+    document.getElementById('hp').innerText = "HP: " + hp;   
     const hpBar = document.querySelector('.progress-bar-inner-hp');
-    const hpInPercent = hp / 340 * 140;
+    const hpInPercent = hp / 255 * 140;
     hpBar.style.width = hpInPercent +"px";
 }
+
+
+function setAtk(atk) {
+    document.getElementById('atk').innerText = "Attack: " + atk;  
+    const atkBar = document.querySelector('.progress-bar-inner-atk');
+    const atkInPercent = atk / 475 * 140;
+    atkBar.style.width = atkInPercent +"px";
+}
+
+
+function setDef(def) {
+    document.getElementById('def').innerText = "Defense: " + def;  
+    const defBar = document.querySelector('.progress-bar-inner-def');
+    const defInPercent = def / 340 * 140;
+    defBar.style.width = defInPercent +"px";
+}
+
+
+// function setHp(hp) {
+//     const hpBar = document.querySelector('.progress-bar-inner-hp');
+//     const hpInPercent = hp / 340 * 140;
+//     hpBar.style.width = hpInPercent +"px";
+// }
+
+
+// function setHp(hp) {
+//     const hpBar = document.querySelector('.progress-bar-inner-hp');
+//     const hpInPercent = hp / 340 * 140;
+//     hpBar.style.width = hpInPercent +"px";
+// }

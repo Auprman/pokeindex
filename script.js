@@ -94,9 +94,8 @@ async function updateContent(name) {
     document.getElementById('modalPokemonImg').src = URL_PICTURE + name + ".png";
     setType(pokemon);
     document.getElementById('weight').innerText ="Weight: " + weight.toFixed(0) + " kg" 
-    document.getElementById('hp').innerText = "HP: " + hp;
     setBackgroundColor(type);
-    setPokemonStats(hp)
+    setPokemonStats(name)
 }
 
 
