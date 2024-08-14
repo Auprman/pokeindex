@@ -92,20 +92,26 @@ function setAtk(atk) {
 function setDef(def) {
     document.getElementById('def').innerText = "Defense: " + def;  
     const defBar = document.querySelector('.progress-bar-inner-def');
-    const defInPercent = def / 340 * 140;
+    const defInPercent = def / 250 * 140;
     defBar.style.width = defInPercent +"px";
 }
 
 
-// function setHp(hp) {
+// function setSpAtk(hp) {
 //     const hpBar = document.querySelector('.progress-bar-inner-hp');
-//     const hpInPercent = hp / 340 * 140;
+//     const hpInPercent = hp / 194 * 140;
 //     hpBar.style.width = hpInPercent +"px";
 // }
 
 
-// function setHp(hp) {
+// function setSpDef(hp) {
 //     const hpBar = document.querySelector('.progress-bar-inner-hp');
-//     const hpInPercent = hp / 340 * 140;
+//     const hpInPercent = hp / 250 * 140;
+//     hpBar.style.width = hpInPercent +"px";
+// }
+
+// function setSpeed(hp) {
+//     const hpBar = document.querySelector('.progress-bar-inner-hp');
+//     const hpInPercent = hp / 200 * 140;
 //     hpBar.style.width = hpInPercent +"px";
 // }
