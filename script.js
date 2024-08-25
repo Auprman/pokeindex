@@ -8,7 +8,12 @@ const URL_PICTURE = "https://img.pokemondb.net/artwork/vector/large/";
 
 
 
+window.addEventListener('load',() => {console.log('Content loaded');
+})
+
+
 function init(){
+    
     addPokemon()
     rotatePokeball();
 }
@@ -29,7 +34,7 @@ async function getData(path) {
 async function addDataToContainer(name,path) {
     let container = document.getElementById('content');
     loadedPokemon = [];
-    
+    showLoadingScreen();
     for (let i= 0 ; i < name.results.length ; i ++){
             loadedPokemon.push(name.results[i]['name']);
             const pokename = name.results[i]['name']
@@ -40,7 +45,9 @@ async function addDataToContainer(name,path) {
             card.classList.add(typeName)
             addTypesToCard(pokemonData)
     }
+    hideLoadingScreen();
 }
+
 
 function addTypesToCard(pokemon) {
     let pictureContainer = document.getElementById('type-pictures-' + pokemon['name']);
@@ -52,7 +59,6 @@ function addTypesToCard(pokemon) {
     else{
         pictureContainer.innerHTML = `<img src = "img/types/${pokemon['types'][0]['type']['name']}.png">`;
     }
-
 }
 
 
@@ -87,7 +93,6 @@ async function updateContent(name) {
     const pokemon = await getData(URL_SINGLE + name);
     const type = pokemon['types'][0]['type']['name'];
     const weight  = pokemon['weight'] * 0.453592
-    const hp = pokemon['stats'][0]['base_stat']
    
     document.getElementById(name).classList.add(type);
     document.getElementById('modalPokemonName').innerText = name.charAt(0).toUpperCase() + name.slice(1);
@@ -130,4 +135,23 @@ async function loadMorePokemon() {
 }
 
 
+function showLoadingScreen() {
+    document.getElementById('loadingScreen').classList.add('show')
+}
+
+
+function hideLoadingScreen() {
+    document.getElementById('loadingScreen').classList.remove('show');
+    window.scrollTo({
+        top: document.body.scrollHeight
+    });
+}
+
+
+function scrollToTop(){
+    window.scrollTo({ 
+        top: 0,
+        behavior: 'smooth'
+    })
+}
 

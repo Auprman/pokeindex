@@ -8,11 +8,12 @@ body {
     align-items: center;
     flex-direction: column;
     font-family: "Chakra Petch", sans-serif;
-  }
+}
 
 h3{
-    text-align: center;
+    text-align: justify;
 }
+
 header{
     display: flex;
     width: 100%;
@@ -22,6 +23,7 @@ header{
     background-color: rgb(80, 138, 224);
     box-shadow: 0px 9px 9px rgba(0, 0, 0, 0.301);
 }
+
 .header-content{
     display: flex;
     width: 100%;
@@ -29,6 +31,7 @@ header{
     justify-content: space-between;
     align-items: center;
 }
+
 #search{
     font-family: "Chakra Petch", sans-serif;
     height: 40px;
@@ -38,6 +41,7 @@ header{
     outline: none;
     border-radius: 4px;
 }
+
 #search:focus{
    
  border: 2px solid greenyellow;
@@ -54,7 +58,6 @@ header{
     left: -18%;
 }
 
-
 #next {
     border: 1px solid white;
     border-radius: 50%;
@@ -65,6 +68,7 @@ header{
     top: 50%;
     right: -18%;
 }
+
 #next:hover,#previous:hover{
     cursor: pointer;
     filter: brightness(1.4);
@@ -76,11 +80,13 @@ h1{
     font-weight: 900;
     font-size: 40px;
 }
+
 h2{
     font-size: 30px;
     letter-spacing: 2px;
     font-variant: small-caps;
 }
+
 .logo img{
     background: rgba(255, 255, 255, 0);
     height: 75px;
@@ -103,6 +109,7 @@ h2{
 .pokemon-card:hover > img{
     filter: brightness(1.1);
 }
+
 .pokemon-card:hover > img{
     transition: 250ms;
     scale: 1.07;
@@ -153,11 +160,12 @@ h2{
 #modal-content{
     display: flex;
     position: relative;
+    top: 10%;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 300px;
-    height: 50%;
+    width: 400px;
+    height: 70%;
     border-radius: 10px;
     background-color: rgba(21, 126, 158, 0.993);
     box-shadow: 0px 0px 16px rgb(0, 0, 0);
@@ -170,6 +178,30 @@ h2{
 
 .hidden{
     display: none !important;
+}
+
+.show{
+    display: flex !important;
+}
+
+#attributes-pokemon{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+#attributes-pokemon h3{
+    width: 150px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#attributes-pokemon img{
+    width: 32px;
+    margin-left: 16px;
+}
+#type > h3 > img{
+    filter: none !important;
 }
 
 .grass,.bug{
@@ -197,9 +229,32 @@ h2{
 .ground{
     background: linear-gradient(#8d4747, #ffffff) !important;
 }
+.fighting{
+    background: linear-gradient(#f7bd40, #ffffff) !important;
+
+}
+.psychic{
+    background: linear-gradient(#7f026c, #ffffff) !important;
+}
+.rock{
+    background: linear-gradient(#feb285, #ffffff) !important;
+
+}
+.ghost{
+    background: linear-gradient(#4d1c72, #ffffff) !important;
+}
+.ice{
+    background: linear-gradient(#03c7fd, #ffffff) !important;
+
+}
+.dragon{
+    background: linear-gradient(#e7e7e7, #ffffff) !important;
+
+}
 
 h4{
     text-align: center;
+    z-index: 500;
 }
 
 .card-header{
@@ -221,23 +276,26 @@ h4{
 }
 
 #modalPokemonImg{
-    height: 50%;
+    height: 40%;
     width: 100%;
     object-fit: scale-down;
     position: absolute;
-    top: -40%;
+    top: -35%;
     left: 0%;
 }
 
-.progress-bar-hp{
+.progress-bar{
+    align-items: center;
+    display: flex;
+    justify-content: center;
     z-index: 20;
     position: relative;
-    width: 150px;
+    width: 200px;
     height: 15px;
     background-color: rgb(56, 56, 56);
     border-radius: 50px;
     color: white;
-   
+    margin-bottom: 8px;
 }
 .progress-bar-inner-hp{
     z-index: 30;
@@ -254,16 +312,6 @@ h4{
     transition: width 250ms ease;
 }
 
-.progress-bar-atk{
-    z-index: 20;
-    position: relative;
-    width: 150px;
-    height: 15px;
-    background-color: rgb(56, 56, 56);
-    border-radius: 50px;
-    color: white;
-   
-}
 .progress-bar-inner-atk{
     z-index: 30;
     position: absolute;
@@ -279,16 +327,6 @@ h4{
     transition: width 250ms ease;
 }
 
-.progress-bar-def{
-    z-index: 20;
-    position: relative;
-    width: 150px;
-    height: 15px;
-    background-color: rgb(56, 56, 56);
-    border-radius: 50px;
-    color: white;
-   
-}
 .progress-bar-inner-def{
     z-index: 30;
     position: absolute;
@@ -304,6 +342,127 @@ h4{
     transition: width 250ms ease;
 }
 
+.progress-bar-inner-special-atk{
+    z-index: 30;
+    position: absolute;
+    height: 5px;
+    width: 0px;
+    background-color: rgb(194, 192, 63);
+    top: 5px;
+    left: 5px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: width 250ms ease;
+}
+
+
+.progress-bar-inner-special-def{
+    z-index: 30;
+    position: absolute;
+    height: 5px;
+    width: 0px;
+    background-color: rgb(19, 208, 241);
+    top: 5px;
+    left: 5px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: width 250ms ease;
+}
+
+.progress-bar-inner-speed{
+    z-index: 30;
+    position: absolute;
+    height: 5px;
+    width: 0px;
+    background-color: rgb(32, 185, 32);
+    top: 5px;
+    left: 5px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: width 250ms ease;
+}
+
+#loadMoreButton{
+    height: 48px;
+    font-family: "Chakra Petch", sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 250ms ease-in-out;
+    margin: 32px 0px;
+}
+
+#loadMoreButton:hover {
+    cursor: pointer;
+    background-color: #63f794;
+    transition: 250ms;
+    
+}
+
+#loadingScreen {
+    position: fixed;
+    overflow-y: hidden;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.916);
+    z-index: 1000;
+}
+#loadingScreen img{
+    position: fixed;
+    object-fit: scale-down;
+    width: 10%;
+    top: 55%;
+    animation: loading 5s  infinite alternate  ;
+}
+
+@keyframes loading {
+    0% {
+        rotate: 0deg;
+    }
+    100% {
+        rotate: 1080deg;
+    }
+}
+
+@keyframes rotateCard {
+    0%{    transform: rotate3d(0, 1, 0, 0deg);
+    }
+    100%{    transform: rotate3d(0, 1, 0, 360deg);
+    }
+}
+
+#scrollToTop{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    padding: 8px;
+    margin: 8px;
+    color: whitesmoke;
+    background-color: darkolivegreen;
+}
+#scrollToTop:hover{
+    cursor: pointer;
+    background-color: green;
+}
 
 @media (max-width: 450px) {
     #next,#previous{
