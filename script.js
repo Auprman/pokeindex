@@ -7,15 +7,8 @@ const URL_SINGLE = "https://pokeapi.co/api/v2/pokemon/";
 const URL_PICTURE = "https://img.pokemondb.net/artwork/vector/large/";
 
 
-
-window.addEventListener('load',() => {console.log('Content loaded');
-})
-
-
 function init(){
-    
-    addPokemon()
-    rotatePokeball();
+    addPokemon();
 }
 
 
@@ -94,9 +87,9 @@ async function updateContent(name) {
     const type = pokemon['types'][0]['type']['name'];
     const weight  = pokemon['weight'] * 0.453592
    
+    document.getElementById('modalPokemonImg').src = URL_PICTURE + name + ".png";
     document.getElementById(name).classList.add(type);
     document.getElementById('modalPokemonName').innerText = name.charAt(0).toUpperCase() + name.slice(1);
-    document.getElementById('modalPokemonImg').src = URL_PICTURE + name + ".png";
     setType(pokemon);
     document.getElementById('weight').innerText ="Weight: " + weight.toFixed(0) + " kg" 
     setBackgroundColor(type);
@@ -129,9 +122,6 @@ async function loadMorePokemon() {
     document.getElementById('content').innerHTML = '';
     pokemons = await getData(URL_POKEMONS);
     addDataToContainer(pokemons);
-    document.addEventListener('DOMContentLoaded', () =>{
-    window.scrollTo(0,0);
-    })
 }
 
 

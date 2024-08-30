@@ -133,3 +133,102 @@ function setSpeed(speed) {
     const speedInPercent = speed / 200 * 190;
     speedBar.style.width = speedInPercent +"px";
 }
+
+
+async function rotateCard(pokemon, className) {
+    const modal = document.getElementById('modal-content');
+    modal.classList.add(className)
+    setTimeout(() => {
+        modal.classList.remove(className)
+        document.getElementById('pokePicContainer').innerHTML = 
+        `<img id="previous" onclick="showPreviousPokemon()" src="img/chevron-left.png" alt="arrow left">
+         <img id="modalPokemonImg" src="" alt="Pokemon Picture" >
+         <img id="next" onclick="showNextPokemon()" src="img/chevron-right.png" alt="arrow right"></img>
+        `
+        updateContent(pokemon)
+    }, 150);
+    
+}
+
+
+async function displayBackofCard(){
+    let currentPokemon = document.getElementById('modalPokemonName').innerText.toLocaleLowerCase();    
+    let skills = getData(currentPokemon)
+    const modal = document.getElementById('modal-content');
+    modal.innerHTML = modalHtmlContentBack(currentPokemon)
+    rotateCard(currentPokemon, "rotateModalToBack");    
+}
+
+
+async function displayFrontOfCard(){
+    let currentPokemon = document.getElementById('modalPokemonName').innerText.toLocaleLowerCase();
+    const modal = document.getElementById('modal-content');
+    modal.innerHTML = modalHtmlContentFront()
+    rotateCard(currentPokemon, "rotateModalToFront");
+}
+
+
+function modalHtmlContentFront() {
+    return `
+            <div id="rotateBtnContainer">
+                <button onclick="displayBackofCard()">Back</button>
+            </div>
+            <h4 id="idPokemon"></h4>
+            <h2 id="modalPokemonName"></h2>
+            <div id ="pokePicContainer">
+                
+            </div>
+            <div id="attributes-pokemon">
+                <br>
+                <div id="type"></div>
+                <br>
+                <h3 id="weight"></h3>
+                <br>
+            </div>
+            <h4>HP</h4>                    
+            <div class="progress-bar">
+                <h4 id="hp"></h4>
+                <div class="progress-bar-inner-hp"><span id="span-hp"></span></div>
+            </div>
+            <h4>Attack</h4>
+            <div class="progress-bar">
+                <h4 id ="atk"></h4>
+                <div class="progress-bar-inner-atk"><span id="span-atk"></span></div>
+            </div>
+            <h4>Defense</h4>            
+            <div class="progress-bar">
+                <h4 id="def"></h4>
+                <div class="progress-bar-inner-def"><span id="span-def"></span></div>
+            </div>
+            <h4>Special- attack</h4>
+            <div class="progress-bar">
+                <h4 id="spAtk"></h4>
+                <div class="progress-bar-inner-special-atk"><span id="span-special-atk"></span></div>
+            </div>
+            <h4>Special- defense</h4>
+            <div class="progress-bar">
+                <h4 id="spDef"></h4>
+                <div class="progress-bar-inner-special-def"><span id="span-special-def"></span></div>
+            </div>
+            <h4>Speed</h4>
+            <div class="progress-bar">
+                <h4 id="speed"></h4>
+                <div class="progress-bar-inner-speed"><span id="span-speed"></span></div>
+            </div>
+        `
+}
+
+
+function modalHtmlContentBack() {
+    return `
+            <div id="rotateBtnContainer">
+                <button onclick="displayFrontOfCard()">Front</button>
+            </div>
+            <h4 id="idPokemon"></h4>
+            <h2 id="modalPokemonName"></h2>
+            <div id ="pokePicContainer">
+    
+            </div>
+           
+    `;
+}
