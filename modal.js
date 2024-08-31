@@ -1,21 +1,21 @@
 
 function showModal(name) { 
-    const typeName = document.getElementById(name).classList[1]
-    const modalContent = document.getElementById('modal-content') 
-    document.getElementById('modal-content').addEventListener("click",(e) => {e.stopPropagation() })
-    modal.classList.remove('hidden')
-    modal.classList.add('visible')
-    modalContent.classList.add(typeName)
-    document.body.style.overflowY = "hidden"   
+    const typeName = document.getElementById(name).classList[1];
+    const modalContent = document.getElementById('modal-content'); 
+    document.getElementById('modal-content').addEventListener("click",(e) => {e.stopPropagation() });
+    modal.classList.remove('hidden');
+    modal.classList.add('visible');
+    modalContent.classList.add(typeName);
+    document.body.style.overflowY = "hidden";
     updateContent(name);
 }
 
 
 function hideModal(event) {
-    document.getElementById('modal-content').className =''
+    document.getElementById('modal-content').className ='';
     modal.classList.remove('visible');
     modal.classList.add('hidden');
-    document.body.style.overflowY = "scroll"
+    document.body.style.overflowY = "scroll";
 }
 
 
@@ -25,7 +25,7 @@ function showNextPokemon() {
     loadedPokemon.forEach((parameter, index) =>{
         if(parameter == currentPokemon && index < loadedPokemon.length - 1){
             className = document.getElementById(currentPokemon).classList[1];
-            updateContent(loadedPokemon[index + 1])
+            updateContent(loadedPokemon[index + 1]);
         }
     }) 
 }
@@ -35,14 +35,14 @@ function showPreviousPokemon() {
     let currentPokemon = document.getElementById('modalPokemonName').innerText.toLocaleLowerCase();
     loadedPokemon.forEach((parameter, index) =>{
         if(parameter == currentPokemon && index > 0){
-            updateContent(loadedPokemon[index - 1])
+            updateContent(loadedPokemon[index - 1]);
         }
     })
 }
 
 
 function setBackgroundColor(type) {
-    document.getElementById('modal-content').classList =''
+    document.getElementById('modal-content').classList ='';
     document.getElementById('modal-content').classList = 'modal-content ' +  type;
 }
 
@@ -51,8 +51,8 @@ function setType(pokemon) {
     const type = pokemon['types'][0]['type']['name'];
     let moreThanOneType = [];
     if(pokemon.types.length > 1){
-        document.getElementById('type').innerHTML = ''
-        document.getElementById('type').innerHTML = `<h3>Types:</h3>`
+        document.getElementById('type').innerHTML = '';
+        document.getElementById('type').innerHTML = `<h3>Types:</h3>`;
         pokemon.types.forEach((key) =>{
             let types = key.type.name;
             document.getElementById('type').innerHTML += `
@@ -137,13 +137,14 @@ function setSpeed(speed) {
 
 async function rotateCard(pokemon, className) {
     const modal = document.getElementById('modal-content');
-    modal.classList.add(className)
+    modal.classList.add(className);
     setTimeout(() => {
         modal.classList.remove(className)
         document.getElementById('pokePicContainer').innerHTML = 
-        `<img id="previous" onclick="showPreviousPokemon()" src="img/chevron-left.png" alt="arrow left">
-         <img id="modalPokemonImg" src="" alt="Pokemon Picture" >
-         <img id="next" onclick="showNextPokemon()" src="img/chevron-right.png" alt="arrow right"></img>
+        `
+        <img id="previous" onclick="showPreviousPokemon()" src="img/chevron-left.png" alt="arrow left">
+        <img id="modalPokemonImg" src="" alt="Pokemon Picture" >
+        <img id="next" onclick="showNextPokemon()" src="img/chevron-right.png" alt="arrow right"></img>
         `
         updateContent(pokemon)
     }, 150);
@@ -153,25 +154,42 @@ async function rotateCard(pokemon, className) {
 
 async function displayBackofCard(){
     let currentPokemon = document.getElementById('modalPokemonName').innerText.toLocaleLowerCase();    
-    let skills = getData(currentPokemon)
+    let pokemonData = await getData(URL_SINGLE + currentPokemon);
     const modal = document.getElementById('modal-content');
-    modal.innerHTML = modalHtmlContentBack(currentPokemon)
-    rotateCard(currentPokemon, "rotateModalToBack");    
+    modal.innerHTML = modalHtmlContentBack(currentPokemon, pokemonData.id);
+    rotateCard(currentPokemon, "rotateModalToBack");
+    addAbilitiesToModal (pokemonData.abilities)
 }
 
 
 async function displayFrontOfCard(){
     let currentPokemon = document.getElementById('modalPokemonName').innerText.toLocaleLowerCase();
+    let pokemonData = await getData(URL_SINGLE + currentPokemon);    
     const modal = document.getElementById('modal-content');
-    modal.innerHTML = modalHtmlContentFront()
+    modal.innerHTML = modalHtmlContentFront(currentPokemon, pokemonData.id);
     rotateCard(currentPokemon, "rotateModalToFront");
 }
 
 
-function modalHtmlContentFront() {
+function addAbilitiesToModal (abilities) {
+    const abilityContainer = document.getElementById('abilities');
+    let abiltiesArray = abilities;
+    abilityContainer.innerHTML = '<h3>Abilities: </h3>';
+    abiltiesArray.forEach((element) => {
+        abilityContainer.innerHTML += 
+        `
+        <h4>${element.ability.name}</h4>
+        `
+        
+    })
+    
+}
+
+
+function modalHtmlContentFront(name, id) {
     return `
             <div id="rotateBtnContainer">
-                <button onclick="displayBackofCard()">Back</button>
+                <img onclick="displayBackofCard()" src="./img/turn.png" alt="turn">
             </div>
             <h4 id="idPokemon"></h4>
             <h2 id="modalPokemonName"></h2>
@@ -219,15 +237,16 @@ function modalHtmlContentFront() {
 }
 
 
-function modalHtmlContentBack() {
+function modalHtmlContentBack(name , id) {
     return `
             <div id="rotateBtnContainer">
-                <button onclick="displayFrontOfCard()">Front</button>
+                <img onclick="displayFrontOfCard()" src="./img/turn.png" alt="turn">
             </div>
-            <h4 id="idPokemon"></h4>
-            <h2 id="modalPokemonName"></h2>
+                <h4 id="idPokemon"># ${id}</h4>
+                <h2 id="modalPokemonName"></h2>
             <div id ="pokePicContainer">
-    
+            </div>
+            <div id= "abilities">
             </div>
            
     `;

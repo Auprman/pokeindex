@@ -13,7 +13,7 @@ function init(){
 
 
 function rotatePokeball() {
-    document.querySelector("#logoPic").style.rotate = "360deg"
+    document.querySelector("#logoPic").style.rotate = "360deg";
 }
 
 
@@ -30,13 +30,13 @@ async function addDataToContainer(name,path) {
     showLoadingScreen();
     for (let i= 0 ; i < name.results.length ; i ++){
             loadedPokemon.push(name.results[i]['name']);
-            const pokename = name.results[i]['name']
+            const pokename = name.results[i]['name'];
             const pokemonData = await getData(URL_SINGLE + pokename);
             const typeName = pokemonData['types'][0]['type']['name'];      
             container.innerHTML += htmlContent(name.results[i], pokemonData.id);
             const card = document.getElementById(pokename);
-            card.classList.add(typeName)
-            addTypesToCard(pokemonData)
+            card.classList.add(typeName);
+            addTypesToCard(pokemonData);
     }
     hideLoadingScreen();
 }
@@ -58,9 +58,9 @@ function addTypesToCard(pokemon) {
 async function addPokemon() {
     try {
         pokemons = await getData(URL_SINGLE);
-        addDataToContainer(pokemons)
+        addDataToContainer(pokemons);
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
 }
 
@@ -85,20 +85,21 @@ function htmlContent(element, id) {
 async function updateContent(name) {
     const pokemon = await getData(URL_SINGLE + name);
     const type = pokemon['types'][0]['type']['name'];
-    const weight  = pokemon['weight'] * 0.453592
-   
-    document.getElementById('modalPokemonImg').src = URL_PICTURE + name + ".png";
-    document.getElementById(name).classList.add(type);
-    document.getElementById('modalPokemonName').innerText = name.charAt(0).toUpperCase() + name.slice(1);
-    setType(pokemon);
-    document.getElementById('weight').innerText ="Weight: " + weight.toFixed(0) + " kg" 
+    const weight  = pokemon['weight'] * 0.453592;
+    setPokemonDetails (name, pokemon, type)
     setBackgroundColor(type);
-    setPokemonStats(name)
+    if(!document.getElementById('weight')){return}
+    document.getElementById('weight').innerText ="Weight: " + weight.toFixed(0) + " kg" ;
+    setType(pokemon);
+    setPokemonStats(name);
 }
 
 
-function stopRotation() {
-    document.querySelector("#logoPic").removeAttribute('rotate')
+function setPokemonDetails (name, pokemon, type) {
+    document.getElementById('modalPokemonImg').src = URL_PICTURE + name + ".png";
+    document.getElementById(name).classList.add(type);
+    document.getElementById('modalPokemonName').innerText = name.charAt(0).toUpperCase() + name.slice(1);
+    document.getElementById('idPokemon').innerText = '# ' + pokemon.id
 }
 
 
@@ -106,11 +107,11 @@ function filterPokemon() {
    let input = document.getElementById('search');
    document.querySelectorAll('.pokemon-container').forEach((element) =>{
     if(input.value.length >= 3){
-        element.style.display ="none"
+        element.style.display ="none";
         element.id.match(input.value.toLowerCase()) ? element.style.display ='flex' : null;
     }
     else{
-        element.style.display ="flex"
+        element.style.display ="flex";
     }
    });  
 }
@@ -126,12 +127,15 @@ async function loadMorePokemon() {
 
 
 function showLoadingScreen() {
-    document.getElementById('loadingScreen').classList.add('show')
+    document.getElementById('loadingScreen').classList.add('show');
+    document.body.style.overflowY ='hidden';
+
 }
 
 
 function hideLoadingScreen() {
     document.getElementById('loadingScreen').classList.remove('show');
+    document.body.style.overflowY = 'visible';
     window.scrollTo({
         top: document.body.scrollHeight
     });

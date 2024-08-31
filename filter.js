@@ -8,7 +8,7 @@ function filterByType() {
             let lastIndexOf = picture.src.lastIndexOf('/'); 
             let pictureName = picture.src.slice(lastIndexOf + 1 , -4);
             if(pictureName == filterSelection.value || filterSelection.value =='none'){
-                pokemonCard.classList.remove('hidden')
+                pokemonCard.classList.remove('hidden');
             }
         })
     })

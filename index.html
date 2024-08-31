@@ -60,14 +60,14 @@
     <div class="hidden" id="modal" onclick="hideModal()">
         <div id="modal-content">
             <div id="rotateBtnContainer">
-                <button onclick="displayBackofCard()">Back</button>
+                <img onclick="displayBackofCard()" src="./img/turn.png" alt="turn">
             </div>
             <h4 id="idPokemon"></h4>
             <h2 id="modalPokemonName"></h2>
             <div>
                 <img id="previous" onclick="showPreviousPokemon()" src="img/chevron-left.png" alt="arrow left">
                 <img id="modalPokemonImg" src="" alt="Pokemon Picture" >
-                <img id="next" onclick="showNextPokemon()" src="img/chevron-right.png" alt="arrow right">
+                <img id="next" onclick="showNextPokemon()" src="./img/chevron-right.png" alt="arrow right">
             </div>
             <div id="attributes-pokemon">
                 <br>
@@ -109,8 +109,8 @@
         </div>
     </div>
     <button onclick="loadMorePokemon()" id="loadMoreButton">Load more Pokemon</button>
-    <div  onclick="scrollToTop()" id="scrollToTop">
-       <span>Scroll To Top!</span> 
+    <div id="scrollToTop">
+       <img onclick="scrollToTop()" src="./img/arrow-top.png" alt="arrowtop">
     </div>
     <footer></footer>
     
