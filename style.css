@@ -509,6 +509,26 @@ h4{
     align-items: center;
 }
 
+#evlolution-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    img{
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+        margin-right: 24px;
+    }
+    div{
+        display: flex;
+        align-items: center;
+        margin-top: 8px;
+        width: 200px;
+    }
+}
+
 @media (max-width: 560px) {
     #next,#previous{
         top: 110%;

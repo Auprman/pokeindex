@@ -1,6 +1,7 @@
 let modal = document.getElementById('modal');
 let loadedPokemon = [];
 let displayAmount = 20;
+let evolutionChain = [] ;
 
 const URL_POKEMONS = "https://pokeapi.co/api/v2/pokemon?limit="+ displayAmount +"&offset=0";
 const URL_SINGLE = "https://pokeapi.co/api/v2/pokemon/";
@@ -150,12 +151,15 @@ function scrollToTop(){
 }
 
 
-async function getEvolution(pokemonName) {
+async function getEvolutionChain(pokemonName) {
     const pokemonData = await getData(URL_SINGLE + pokemonName);
     const pokemonId = pokemonData.id;
-    const pokemonSpecies = await getSpecies(pokemonId);    
-    return pokemonSpecies.evolves_from_species;
+    const pokemonSpecies = await getSpecies(pokemonId);
+    let response = await fetch(pokemonSpecies.evolution_chain.url);
+    let data = await response.json()
+    return data;
 }
+
 
 async function getSpecies(id) {
     let response = await fetch('https://pokeapi.co/api/v2/pokemon-species/'+ id)
@@ -163,18 +167,43 @@ async function getSpecies(id) {
     return data;
 }
 
-async function getEvolutionChain(pokemonName) {
-    let evolution = await getEvolution(pokemonName);
-    let evolutionChain = [] ;
-    if(evolution != null){
-        evolutionChain.push(evolution.name)
-        let secondEvolution = await getEvolution(evolution.name);
-        getEvolutionChain(evolution.name)     
+
+async function getAllEvolutions(pokemonName) {
+    let evolutionChain = await getEvolutionChain(pokemonName);
+    const evolutionChain1 = evolutionChain.chain;
+    const evolutionChain2 = evolutionChain1.evolves_to[0]; 
+    const evolutionChain3 = evolutionChain1.evolves_to[0];
+    let evolutionArray = [evolutionChain1.species.name];
+    if(evolutionChain2 !== undefined){
+        evolutionArray.push(evolutionChain1.evolves_to[0].species.name)
+            if(evolutionChain3.evolves_to[0] !== undefined){
+                evolutionArray.push(evolutionChain1.evolves_to[0].evolves_to[0].species.name)
+        }
     }
-    else{
-        return evolutionChain ;
-    }
-    console.log(evolutionChain);
     
+    
+    return evolutionArray
 }
-getEvolutionChain('venusaur')
+
+
+async function addEvolutionChainToCard(pokemonName) {
+    let evolutions = await getAllEvolutions(pokemonName);
+    const evolutionContainer = document.getElementById('evlolution-container');
+    if(evolutionContainer){
+        evolutionContainer.innerHTML = `<h4> Evolution: </h4>`
+            evolutions.forEach((element,index) =>{
+                    evolutionContainer.innerHTML += 
+                    `
+                        <div>
+                            <img src="${URL_PICTURE + element}.png" alt="pokemon picture">
+                            <p>${index + 1}. ${element}</p>
+                        </div>
+                    ` 
+            })
+        }
+}
+
+
+
+
+

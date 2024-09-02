@@ -8,6 +8,8 @@ function showModal(name) {
     modalContent.classList.add(typeName);
     document.body.style.overflowY = "hidden";
     updateContent(name);
+    addEvolutionChainToCard(name);
+    addAbilitiesToModal (name);
 }
 
 
@@ -21,11 +23,12 @@ function hideModal(event) {
 
 function showNextPokemon() {
     let currentPokemon = document.getElementById('modalPokemonName').innerText.toLocaleLowerCase();
-   
     loadedPokemon.forEach((parameter, index) =>{
         if(parameter == currentPokemon && index < loadedPokemon.length - 1){
             className = document.getElementById(currentPokemon).classList[1];
             updateContent(loadedPokemon[index + 1]);
+            addEvolutionChainToCard(loadedPokemon[index + 1]);
+            addAbilitiesToModal (loadedPokemon[index + 1]);
         }
     }) 
 }
@@ -36,6 +39,8 @@ function showPreviousPokemon() {
     loadedPokemon.forEach((parameter, index) =>{
         if(parameter == currentPokemon && index > 0){
             updateContent(loadedPokemon[index - 1]);
+            addEvolutionChainToCard(loadedPokemon[index - 1]);
+            addAbilitiesToModal (loadedPokemon[index - 1]);
         }
     })
 }
@@ -83,7 +88,6 @@ async function setPokemonStats(name) {
     setSpAtk(spAtk);
     setSpDef(spDef);
     setSpeed(speed)
-
 }
 
 
@@ -146,9 +150,9 @@ async function rotateCard(pokemon, className) {
         <img id="modalPokemonImg" src="" alt="Pokemon Picture" >
         <img id="next" onclick="showNextPokemon()" src="img/chevron-right.png" alt="arrow right"></img>
         `
-        updateContent(pokemon)
+        updateContent(pokemon);
     }, 150);
-    
+    addEvolutionChainToCard(pokemon);
 }
 
 
@@ -158,7 +162,7 @@ async function displayBackofCard(){
     const modal = document.getElementById('modal-content');
     modal.innerHTML = modalHtmlContentBack(currentPokemon, pokemonData.id);
     rotateCard(currentPokemon, "rotateModalToBack");
-    addAbilitiesToModal (pokemonData.abilities)
+    addAbilitiesToModal (currentPokemon);
 }
 
 
@@ -171,20 +175,21 @@ async function displayFrontOfCard(){
 }
 
 
-function addAbilitiesToModal (abilities) {
+async function addAbilitiesToModal (pokemon) {
     const abilityContainer = document.getElementById('abilities');
-    let abiltiesArray = abilities;
-    abilityContainer.innerHTML = '<h3>Abilities: </h3>';
-    abiltiesArray.forEach((element) => {
-        abilityContainer.innerHTML += 
-        `
-        <div class = "ability">
-            <h4>${element.ability.name}</h4>
-        </div>
-        `
-        
-    })
-    
+    const pokedata = await getData(URL_SINGLE + pokemon)
+    let abiltiesArray = pokedata.abilities;
+    if(abilityContainer){    
+        abilityContainer.innerHTML = '<h3>Abilities: </h3>';
+        abiltiesArray.forEach((element) => {
+            abilityContainer.innerHTML += 
+            `
+            <div class = "ability">
+                <h4>${element.ability.name}</h4>
+            </div>
+            `;
+        })
+    }
 }
 
 
@@ -235,7 +240,7 @@ function modalHtmlContentFront(name, id) {
             <div id="rotateBtnContainer">
                 <img onclick="displayBackofCard()" src="./img/turn.png" alt="turn">
             </div>
-        `
+        `;
 }
 
 
@@ -247,9 +252,9 @@ function modalHtmlContentBack(name , id) {
             </div>
             <div id= "abilities">
             </div>
+            <div id= "evlolution-container"></div>
             <div id="rotateBtnContainer">
                 <img onclick="displayFrontOfCard()" src="./img/turn.png" alt="turn">
             </div>
-           
     `;
 }
