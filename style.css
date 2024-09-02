@@ -160,16 +160,19 @@ h2{
 #modal-content{
     display: flex;
     position: relative;
-    top: 10%;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 400px;
+    width: 90%;
+    max-width: 400px;
     height: 70%;
     border-radius: 10px;
     background-color: rgba(21, 126, 158, 0.993);
     box-shadow: 0px 0px 16px rgb(0, 0, 0);
     cursor:default;
+    h3,h2{
+        text-align: center;
+    }
 }
 
 
@@ -277,12 +280,13 @@ h4{
 }
 
 #modalPokemonImg{
-    height: 40%;
+    height: 30%;
     width: 100%;
     object-fit: scale-down;
     position: absolute;
-    top: -35%;
+    top: -21%;
     left: 0%;
+
 }
 
 .progress-bar{
@@ -293,7 +297,7 @@ h4{
     position: relative;
     width: 200px;
     height: 15px;
-    background-color: rgb(56, 56, 56);
+    background-color: rgb(27, 27, 27);
     border-radius: 50px;
     color: white;
     margin-bottom: 8px;
@@ -452,7 +456,8 @@ h4{
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    width: 100%;   
+    width: 100%; 
+    max-width: 1440px;  
     img{
         padding: 1px;
         border-radius: 50px;
@@ -470,7 +475,7 @@ h4{
 #rotateBtnContainer{
     display: flex;
     width: 80%;
-    justify-content: flex-end;
+    justify-content: center;
     img{
         height: 24px;
         filter: opacity(0.5);
@@ -491,7 +496,20 @@ h4{
     transition: 150ms ease-in-out;
 }
 
-@media (max-width: 450px) {
+.ability {
+    display: flex;
+    flex-direction: row;
+    background-color: whitesmoke;
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 4px;
+    margin: 4px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 560px) {
     #next,#previous{
         top: 110%;
     }   

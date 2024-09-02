@@ -149,3 +149,32 @@ function scrollToTop(){
     })
 }
 
+
+async function getEvolution(pokemonName) {
+    const pokemonData = await getData(URL_SINGLE + pokemonName);
+    const pokemonId = pokemonData.id;
+    const pokemonSpecies = await getSpecies(pokemonId);    
+    return pokemonSpecies.evolves_from_species;
+}
+
+async function getSpecies(id) {
+    let response = await fetch('https://pokeapi.co/api/v2/pokemon-species/'+ id)
+    let data = await response.json() 
+    return data;
+}
+
+async function getEvolutionChain(pokemonName) {
+    let evolution = await getEvolution(pokemonName);
+    let evolutionChain = [] ;
+    if(evolution != null){
+        evolutionChain.push(evolution.name)
+        let secondEvolution = await getEvolution(evolution.name);
+        getEvolutionChain(evolution.name)     
+    }
+    else{
+        return evolutionChain ;
+    }
+    console.log(evolutionChain);
+    
+}
+getEvolutionChain('venusaur')

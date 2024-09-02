@@ -178,7 +178,9 @@ function addAbilitiesToModal (abilities) {
     abiltiesArray.forEach((element) => {
         abilityContainer.innerHTML += 
         `
-        <h4>${element.ability.name}</h4>
+        <div class = "ability">
+            <h4>${element.ability.name}</h4>
+        </div>
         `
         
     })
@@ -188,9 +190,6 @@ function addAbilitiesToModal (abilities) {
 
 function modalHtmlContentFront(name, id) {
     return `
-            <div id="rotateBtnContainer">
-                <img onclick="displayBackofCard()" src="./img/turn.png" alt="turn">
-            </div>
             <h4 id="idPokemon"></h4>
             <h2 id="modalPokemonName"></h2>
             <div id ="pokePicContainer">
@@ -233,20 +232,23 @@ function modalHtmlContentFront(name, id) {
                 <h4 id="speed"></h4>
                 <div class="progress-bar-inner-speed"><span id="span-speed"></span></div>
             </div>
+            <div id="rotateBtnContainer">
+                <img onclick="displayBackofCard()" src="./img/turn.png" alt="turn">
+            </div>
         `
 }
 
 
 function modalHtmlContentBack(name , id) {
     return `
-            <div id="rotateBtnContainer">
-                <img onclick="displayFrontOfCard()" src="./img/turn.png" alt="turn">
-            </div>
                 <h4 id="idPokemon"># ${id}</h4>
                 <h2 id="modalPokemonName"></h2>
             <div id ="pokePicContainer">
             </div>
             <div id= "abilities">
+            </div>
+            <div id="rotateBtnContainer">
+                <img onclick="displayFrontOfCard()" src="./img/turn.png" alt="turn">
             </div>
            
     `;
