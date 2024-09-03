@@ -147,7 +147,7 @@ async function rotateCard(pokemon, className) {
         document.getElementById('pokePicContainer').innerHTML = 
         `
         <img id="previous" onclick="showPreviousPokemon()" src="img/chevron-left.png" alt="arrow left">
-        <img id="modalPokemonImg" src="" alt="Pokemon Picture" >
+        <img onclick= "hideModal()" id="modalPokemonImg" src="" alt="Pokemon Picture" >
         <img id="next" onclick="showNextPokemon()" src="img/chevron-right.png" alt="arrow right"></img>
         `
         updateContent(pokemon);

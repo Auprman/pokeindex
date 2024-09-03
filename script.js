@@ -76,7 +76,7 @@ function htmlContent(element, id) {
                  <h4>${'# ' + id}</h4> 
                  </div>
                 <h2>${name.charAt(0).toUpperCase() + name.slice(1)}</h2>
-                <img src="${URL_PICTURE + name + ".png"}">
+                <img onclick= "hideModal()" src="${URL_PICTURE + name + ".png"}">
             </div>
          </div>
         `  
@@ -101,20 +101,6 @@ function setPokemonDetails (name, pokemon, type) {
     document.getElementById(name).classList.add(type);
     document.getElementById('modalPokemonName').innerText = name.charAt(0).toUpperCase() + name.slice(1);
     document.getElementById('idPokemon').innerText = '# ' + pokemon.id
-}
-
-
-function filterPokemon() {
-   let input = document.getElementById('search');
-   document.querySelectorAll('.pokemon-container').forEach((element) =>{
-    if(input.value.length >= 3){
-        element.style.display ="none";
-        element.id.match(input.value.toLowerCase()) ? element.style.display ='flex' : null;
-    }
-    else{
-        element.style.display ="flex";
-    }
-   });  
 }
 
 
@@ -190,7 +176,7 @@ async function addEvolutionChainToCard(pokemonName) {
     let evolutions = await getAllEvolutions(pokemonName);
     const evolutionContainer = document.getElementById('evlolution-container');
     if(evolutionContainer){
-        evolutionContainer.innerHTML = `<h4> Evolution: </h4>`
+        evolutionContainer.innerHTML = `<h3> Evolution: </h3>`
             evolutions.forEach((element,index) =>{
                     evolutionContainer.innerHTML += 
                     `

@@ -47,33 +47,6 @@ header{
  border: 2px solid greenyellow;
 }
 
-#previous {
-    border: 1px solid white;
-    border-radius: 50%;
-    background: aliceblue;
-    display: flex;
-    height: 48px;
-    position: absolute;
-    top: 50%;
-    left: -18%;
-}
-
-#next {
-    border: 1px solid white;
-    border-radius: 50%;
-    background: aliceblue;
-    display: flex;
-    height: 48px;
-    position: absolute;
-    top: 50%;
-    right: -18%;
-}
-
-#next:hover,#previous:hover{
-    cursor: pointer;
-    filter: brightness(1.4);
-}
-
 h1{
     text-align: center;
     margin: 32px;
@@ -143,70 +116,7 @@ h2{
     z-index: 10;
 }
 
-#modal{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.788);
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    z-index: 20;
-}
 
-#modal-content{
-    display: flex;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 90%;
-    max-width: 400px;
-    height: 70%;
-    border-radius: 10px;
-    background-color: rgba(21, 126, 158, 0.993);
-    box-shadow: 0px 0px 16px rgb(0, 0, 0);
-    cursor:default;
-    h3,h2{
-        text-align: center;
-    }
-}
-
-
-#modal-content img{
-    filter: drop-shadow(-11px 0px 3px rgba(0, 0, 0, 0.353));
-}
-
-.hidden{
-    display: none !important;
-}
-
-.show{
-    display: flex !important;
-}
-
-#attributes-pokemon{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-}
-#attributes-pokemon h3{
-    width: 150px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-#attributes-pokemon img{
-    width: 32px;
-    margin-left: 16px;
-}
-#type > h3 > img{
-    filter: none !important;
-}
 
 .grass,.bug{
     background: linear-gradient(#63f794, #ffffff) !important;
@@ -279,120 +189,6 @@ h4{
     width: 32px;
 }
 
-#modalPokemonImg{
-    height: 30%;
-    width: 100%;
-    object-fit: scale-down;
-    position: absolute;
-    top: -21%;
-    left: 0%;
-
-}
-
-.progress-bar{
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    z-index: 20;
-    position: relative;
-    width: 200px;
-    height: 15px;
-    background-color: rgb(27, 27, 27);
-    border-radius: 50px;
-    color: white;
-    margin-bottom: 8px;
-}
-.progress-bar-inner-hp{
-    z-index: 30;
-    position: absolute;
-    height: 5px;
-    width: 0px;
-    background-color: rgb(248, 33, 33);
-    top: 5px;
-    left: 5px;
-    border-radius: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: width 250ms ease;
-}
-
-.progress-bar-inner-atk{
-    z-index: 30;
-    position: absolute;
-    height: 5px;
-    width: 0px;
-    background-color: rgb(248, 33, 33);
-    top: 5px;
-    left: 5px;
-    border-radius: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: width 250ms ease;
-}
-
-.progress-bar-inner-def{
-    z-index: 30;
-    position: absolute;
-    height: 5px;
-    width: 0px;
-    background-color: rgb(19, 208, 241);
-    top: 5px;
-    left: 5px;
-    border-radius: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: width 250ms ease;
-}
-
-.progress-bar-inner-special-atk{
-    z-index: 30;
-    position: absolute;
-    height: 5px;
-    width: 0px;
-    background-color: rgb(194, 192, 63);
-    top: 5px;
-    left: 5px;
-    border-radius: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: width 250ms ease;
-}
-
-
-.progress-bar-inner-special-def{
-    z-index: 30;
-    position: absolute;
-    height: 5px;
-    width: 0px;
-    background-color: rgb(19, 208, 241);
-    top: 5px;
-    left: 5px;
-    border-radius: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: width 250ms ease;
-}
-
-.progress-bar-inner-speed{
-    z-index: 30;
-    position: absolute;
-    height: 5px;
-    width: 0px;
-    background-color: rgb(32, 185, 32);
-    top: 5px;
-    left: 5px;
-    border-radius: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: width 250ms ease;
-}
-
 #loadMoreButton{
     height: 48px;
     font-family: "Chakra Petch", sans-serif;
@@ -428,6 +224,7 @@ h4{
     background-color: rgba(0, 0, 0, 0.916);
     z-index: 1000;
 }
+
 #loadingScreen img{
     position: fixed;
     object-fit: scale-down;
@@ -468,64 +265,6 @@ h4{
     img:hover{
         cursor: pointer;
         background-color: rgba(155, 158, 155, 0.774);
-    }
-}
-
-
-#rotateBtnContainer{
-    display: flex;
-    width: 80%;
-    justify-content: center;
-    img{
-        height: 24px;
-        filter: opacity(0.5);
-    }
-    img:hover{
-        cursor: pointer;
-        filter: opacity(1);
-    }
-}
-
-.rotateModalToBack {
-    transform: rotateY(180deg);
-    transition: 150ms ease-in-out;
-}
-
-.rotateModalToFront {
-    transform: rotateY(-180deg) !important;
-    transition: 150ms ease-in-out;
-}
-
-.ability {
-    display: flex;
-    flex-direction: row;
-    background-color: whitesmoke;
-    border: 1px solid black;
-    border-radius: 8px;
-    padding: 4px;
-    margin: 4px;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-}
-
-#evlolution-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    
-    img{
-        width: 40px;
-        height: 40px;
-        object-fit: contain;
-        margin-right: 24px;
-    }
-    div{
-        display: flex;
-        align-items: center;
-        margin-top: 8px;
-        width: 200px;
     }
 }
 
