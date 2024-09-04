@@ -201,45 +201,44 @@ function modalHtmlContentFront(name, id) {
                 
             </div>
             <div id="attributes-pokemon">
-                <br>
                 <div id="type"></div>
-                <br>
                 <h3 id="weight"></h3>
-                <br>
             </div>
-            <h4>HP</h4>                    
-            <div class="progress-bar">
-                <h4 id="hp"></h4>
-                <div class="progress-bar-inner-hp"><span id="span-hp"></span></div>
-            </div>
-            <h4>Attack</h4>
-            <div class="progress-bar">
-                <h4 id ="atk"></h4>
-                <div class="progress-bar-inner-atk"><span id="span-atk"></span></div>
-            </div>
-            <h4>Defense</h4>            
-            <div class="progress-bar">
-                <h4 id="def"></h4>
-                <div class="progress-bar-inner-def"><span id="span-def"></span></div>
-            </div>
-            <h4>Special- attack</h4>
-            <div class="progress-bar">
-                <h4 id="spAtk"></h4>
-                <div class="progress-bar-inner-special-atk"><span id="span-special-atk"></span></div>
-            </div>
-            <h4>Special- defense</h4>
-            <div class="progress-bar">
-                <h4 id="spDef"></h4>
-                <div class="progress-bar-inner-special-def"><span id="span-special-def"></span></div>
-            </div>
-            <h4>Speed</h4>
-            <div class="progress-bar">
-                <h4 id="speed"></h4>
-                <div class="progress-bar-inner-speed"><span id="span-speed"></span></div>
-            </div>
-            <div id="rotateBtnContainer">
-                <img onclick="displayBackofCard()" src="./img/turn.png" alt="turn">
-            </div>
+                <div id= "progressBar">
+                    <h4>HP</h4>                    
+                    <div class="progress-bar">
+                        <h4 id="hp"></h4>
+                        <div class="progress-bar-inner-hp"><span id="span-hp"></span></div>
+                    </div>
+                    <h4>Attack</h4>
+                    <div class="progress-bar">
+                        <h4 id ="atk"></h4>
+                        <div class="progress-bar-inner-atk"><span id="span-atk"></span></div>
+                    </div>
+                    <h4>Defense</h4>            
+                    <div class="progress-bar">
+                        <h4 id="def"></h4>
+                        <div class="progress-bar-inner-def"><span id="span-def"></span></div>
+                    </div>
+                    <h4>Special- attack</h4>
+                    <div class="progress-bar">
+                        <h4 id="spAtk"></h4>
+                        <div class="progress-bar-inner-special-atk"><span id="span-special-atk"></span></div>
+                    </div>
+                    <h4>Special- defense</h4>
+                    <div class="progress-bar">
+                        <h4 id="spDef"></h4>
+                        <div class="progress-bar-inner-special-def"><span id="span-special-def"></span></div>
+                    </div>
+                    <h4>Speed</h4>
+                    <div class="progress-bar">
+                        <h4 id="speed"></h4>
+                        <div class="progress-bar-inner-speed"><span id="span-speed"></span></div>
+                    </div>
+                </div>
+                <div id="rotateBtnContainer">
+                        <img onclick="displayBackofCard()" src="./img/turn.png" alt="turn">
+                </div>
         `;
 }
 

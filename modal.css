@@ -47,14 +47,16 @@
     flex-direction: column;
     width: 90%;
     max-width: 400px;
-    height: 70%;
+    height: 75%;
     border-radius: 10px;
     background-color: rgba(21, 126, 158, 0.993);
     box-shadow: 0px 0px 16px rgb(0, 0, 0);
     cursor:default;
+    animation: showModalAnimation 250ms;
     h3,h2{
         text-align: center;
     }
+    
 }
 
 #modal-content img{
@@ -67,6 +69,35 @@
 
 .show{
     display: flex !important;
+}
+
+.closeModal{
+    animation: hideModalAnimation 250ms;
+}
+
+@keyframes showModalAnimation {
+    0%{     
+        opacity: 0.0;
+        scale: 0.1;
+    }
+    100%{   
+        opacity: 1;
+        scale: 1;
+    }
+}
+@keyframes hideModalAnimation {
+    0%{     
+        opacity: 1.0;
+        scale: 1.0;
+    }
+    100%{   
+        opacity: 0;
+        scale: 0;
+    }
+}
+
+.animation-modal{
+    animation: showModalAnimation 500ms ;
 }
 
 #attributes-pokemon{
@@ -90,11 +121,11 @@
 }
 
 #modalPokemonImg{
-    height: 30%;
+    height: 25%;
     width: 100%;
     object-fit: scale-down;
     position: absolute;
-    top: -21%;
+    top: -15%;
     left: 0%;
 
 }
@@ -117,7 +148,7 @@
     position: absolute;
     height: 5px;
     width: 0px;
-    background-color: rgb(248, 33, 33);
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.801) , rgb(255, 0, 0));
     top: 5px;
     left: 5px;
     border-radius: 50px;
@@ -132,7 +163,7 @@
     position: absolute;
     height: 5px;
     width: 0px;
-    background-color: rgb(248, 33, 33);
+    background: linear-gradient(to right, rgb(0, 0, 0) , yellow);
     top: 5px;
     left: 5px;
     border-radius: 50px;
@@ -147,7 +178,7 @@
     position: absolute;
     height: 5px;
     width: 0px;
-    background-color: rgb(19, 208, 241);
+    background: linear-gradient(to right, rgb(0, 0, 0) , rgb(0, 195, 255));
     top: 5px;
     left: 5px;
     border-radius: 50px;
@@ -162,7 +193,7 @@
     position: absolute;
     height: 5px;
     width: 0px;
-    background-color: rgb(194, 192, 63);
+    background: linear-gradient(to right, rgb(0, 0, 0) , rgb(187, 255, 0));
     top: 5px;
     left: 5px;
     border-radius: 50px;
@@ -178,7 +209,7 @@
     position: absolute;
     height: 5px;
     width: 0px;
-    background-color: rgb(19, 208, 241);
+    background: linear-gradient(to right, rgb(0, 0, 0) , rgb(85, 207, 255));
     top: 5px;
     left: 5px;
     border-radius: 50px;
@@ -193,7 +224,7 @@
     position: absolute;
     height: 5px;
     width: 0px;
-    background-color: rgb(32, 185, 32);
+    background: linear-gradient(to right, rgb(0, 0, 0) , rgb(77, 255, 23));
     top: 5px;
     left: 5px;
     border-radius: 50px;
@@ -205,8 +236,11 @@
 
 
 #rotateBtnContainer{
+    position: absolute;
+    top: 12%;
+    left: 37%;
     display: flex;
-    width: 80%;
+    width: 100%;
     justify-content: center;
     img{
         height: 24px;
@@ -220,12 +254,18 @@
 
 .rotateModalToBack {
     transform: rotateY(180deg);
+    backface-visibility: hidden;
     transition: 150ms ease-in-out;
 }
 
 .rotateModalToFront {
     transform: rotateY(-180deg) !important;
+    backface-visibility: hidden;
     transition: 150ms ease-in-out;
+}
+#abilities{
+    position: absolute;
+    top: 35%;
 }
 
 .ability {
@@ -241,12 +281,30 @@
     align-items: center;
 }
 
+#idPokemon{
+    position: absolute;
+    top: 15%;
+}
+#modalPokemonName{
+    position: absolute;
+    top: 20%;
+}
+#progressBar{
+    position: absolute;
+    top: 50%;
+}
+#attributes-pokemon{
+    position: absolute;
+    top: 29%;
+}
 
 #evlolution-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    top: 61%;
     
     img{
         width: 40px;
